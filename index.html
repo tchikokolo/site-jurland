@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chef Taty Jurland – Loango University Restaurant</title>
+<meta name="description" content="Loango University Restaurant : cuisine fraîche, grande saveur, faite tous les jours par le chef Taty Jurland.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --jaune:#FFC81E;
+  --jaune-clair:#FFE27A;
+  --noir:#0d0d0d;
+  --noir-2:#161616;
+  --noir-3:#1f1f1f;
+  --gris:#b8b8b8;
+  --blanc:#fff;
+  --rayon:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--noir);color:var(--blanc);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{width:min(1150px,92%);margin:auto}
+section{padding:90px 0}
+.titre-section{text-align:center;margin-bottom:55px}
+.titre-section span{color:var(--jaune);font-weight:600;letter-spacing:3px;text-transform:uppercase;font-size:.85rem}
+.titre-section h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);margin-top:8px}
+.titre-section h2 em{color:var(--jaune);font-style:normal}
+.titre-section .trait{width:70px;height:4px;background:var(--jaune);margin:16px auto 0;border-radius:4px}
+
+/* BOUTONS */
+.btn{display:inline-block;padding:14px 32px;border-radius:50px;font-weight:600;border:2px solid var(--jaune);transition:.3s;cursor:pointer;font-family:inherit;font-size:1rem}
+.btn-jaune{background:var(--jaune);color:var(--noir)}
+.btn-jaune:hover{background:transparent;color:var(--jaune);transform:translateY(-3px)}
+.btn-contour{background:transparent;color:var(--jaune)}
+.btn-contour:hover{background:var(--jaune);color:var(--noir);transform:translateY(-3px)}
+
+/* NAVBAR */
+header{position:fixed;top:0;left:0;width:100%;z-index:100;transition:.4s;padding:18px 0}
+header.scrolled{background:rgba(13,13,13,.95);backdrop-filter:blur(10px);padding:10px 0;box-shadow:0 5px 25px rgba(0,0,0,.6)}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800}
+.logo span{color:var(--jaune)}
+.menu-nav{display:flex;gap:30px;list-style:none}
+.menu-nav a{font-weight:500;font-size:.95rem;position:relative;padding-bottom:4px}
+.menu-nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--jaune);transition:.3s}
+.menu-nav a:hover{color:var(--jaune)}
+.menu-nav a:hover::after{width:100%}
+.burger{display:none;background:none;border:none;cursor:pointer;width:30px}
+.burger span{display:block;height:3px;background:var(--jaune);margin:6px 0;border-radius:3px;transition:.3s}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:100px;position:relative;
+  background:radial-gradient(circle at 80% 30%,rgba(255,200,30,.18),transparent 50%),linear-gradient(135deg,#000 0%,#141414 100%)}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 40px,rgba(255,200,30,.025) 40px 80px)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;position:relative}
+.badge{display:inline-block;border:1px solid var(--jaune);color:var(--jaune);padding:6px 18px;border-radius:50px;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,7vw,5rem);line-height:1.05;margin-bottom:20px}
+.hero h1 em{color:var(--jaune);font-style:normal;display:block}
+.hero p{color:var(--gris);max-width:520px;margin-bottom:34px;font-size:1.05rem}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:40px;margin-top:50px}
+.hero-stats strong{display:block;font-size:2rem;color:var(--jaune);font-family:'Playfair Display',serif}
+.hero-stats small{color:var(--gris)}
+.chef-cadre{position:relative;max-width:440px;margin:auto}
+.chef-cadre::before{content:"";position:absolute;inset:-18px -18px 18px 18px;border:3px solid var(--jaune);border-radius:30px 30px 160px 30px;z-index:0}
+.chef-cadre img{position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:30px 30px 160px 30px;filter:grayscale(.15) contrast(1.05);box-shadow:0 30px 60px rgba(0,0,0,.7)}
+.chef-etiquette{position:absolute;z-index:2;bottom:-22px;left:-25px;background:var(--jaune);color:var(--noir);padding:14px 26px;border-radius:16px;font-weight:700;box-shadow:0 15px 30px rgba(0,0,0,.5)}
+.chef-etiquette small{display:block;font-weight:500;font-size:.75rem}
+
+/* BANDEAU */
+.bandeau{background:var(--jaune);color:var(--noir);overflow:hidden;padding:16px 0;white-space:nowrap}
+.defile{display:inline-block;animation:defile 25s linear infinite;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.defile span{margin:0 28px}
+@keyframes defile{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* A PROPOS */
+.apropos{background:var(--noir-2)}
+.apropos-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.apropos-img{position:relative}
+.apropos-img img{border-radius:var(--rayon);aspect-ratio:1/1;object-fit:cover;object-position:top;box-shadow:0 25px 50px rgba(0,0,0,.6)}
+.apropos-img::after{content:"“La cuisine est une passion, le goût un art”";position:absolute;right:-20px;bottom:30px;background:var(--noir);border-left:5px solid var(--jaune);padding:16px 20px;max-width:260px;font-family:'Playfair Display',serif;font-style:italic;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.apropos h3{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:18px}
+.apropos h3 em{color:var(--jaune);font-style:normal}
+.apropos p{color:var(--gris);margin-bottom:18px}
+.points{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.point{background:var(--noir-3);padding:16px;border-radius:12px;border:1px solid #2a2a2a;font-weight:500}
+.point b{color:var(--jaune);margin-right:6px}
+
+/* MENU */
+.filtres{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:45px}
+.filtre{background:transparent;border:2px solid #333;color:var(--blanc);padding:10px 24px;border-radius:50px;cursor:pointer;font-family:inherit;font-weight:500;transition:.3s}
+.filtre:hover,.filtre.actif{background:var(--jaune);border-color:var(--jaune);color:var(--noir)}
+.grille-plats{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:28px}
+.plat{background:var(--noir-2);border-radius:var(--rayon);overflow:hidden;border:1px solid #262626;transition:.4s;display:flex;flex-direction:column}
+.plat:hover{transform:translateY(-10px);border-color:var(--jaune);box-shadow:0 20px 40px rgba(255,200,30,.12)}
+.plat.cache{display:none}
+.plat-img{position:relative;height:210px;overflow:hidden;background:linear-gradient(135deg,#2a2200,#0d0d0d 70%)}
+.plat-img img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.plat:hover .plat-img img{transform:scale(1.12)}
+.plat-img.entiere{background:radial-gradient(circle at center,#2a2200,#0d0d0d 75%)}
+.plat-img.entiere img{object-fit:contain;padding:8px}
+.plat:hover .plat-img.entiere img{transform:scale(1.04)}
+.plat-img.noimg::before{content:attr(data-emoji);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;filter:drop-shadow(0 8px 14px rgba(0,0,0,.6))}
+.prix{position:absolute;top:14px;right:14px;background:var(--jaune);color:var(--noir);font-weight:700;padding:6px 16px;border-radius:50px;font-size:.9rem;z-index:2;box-shadow:0 6px 14px rgba(0,0,0,.5)}
+.plat-info{padding:22px;display:flex;flex-direction:column;flex:1}
+.plat-info small{color:var(--jaune);text-transform:uppercase;letter-spacing:2px;font-size:.7rem;font-weight:600}
+.plat-info h4{font-family:'Playfair Display',serif;font-size:1.3rem;margin:6px 0 8px}
+.plat-info p{color:var(--gris);font-size:.9rem;flex:1}
+.commande{margin-top:16px;color:var(--jaune);font-weight:600;font-size:.9rem}
+.commande:hover{letter-spacing:1px}
+.accomp{margin-top:55px;background:var(--jaune);color:var(--noir);border-radius:var(--rayon);padding:28px;text-align:center}
+.accomp h4{font-family:'Playfair Display',serif;font-size:1.5rem}
+.accomp p{font-weight:700;font-size:1.2rem;letter-spacing:1px}
+
+/* POURQUOI */
+.pourquoi{background:var(--noir-2)}
+.cartes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
+.carte{background:var(--noir-3);padding:34px 24px;border-radius:var(--rayon);text-align:center;border-bottom:4px solid var(--jaune);transition:.3s}
+.carte:hover{transform:translateY(-8px)}
+.carte .ico{font-size:2.6rem;margin-bottom:14px}
+.carte h4{font-family:'Playfair Display',serif;margin-bottom:8px;font-size:1.2rem}
+.carte p{color:var(--gris);font-size:.9rem}
+
+/* AVIS */
+.avis-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.avis{background:var(--noir-2);padding:28px;border-radius:var(--rayon);border-left:5px solid var(--jaune)}
+.avis .etoiles{color:var(--jaune);letter-spacing:3px;margin-bottom:10px}
+.avis p{color:var(--gris);font-style:italic;margin-bottom:14px}
+.avis strong{color:var(--blanc)}
+
+/* CONTACT */
+.contact{background:var(--noir-2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.infos{display:flex;flex-direction:column;gap:18px}
+.info{display:flex;gap:16px;align-items:flex-start;background:var(--noir-3);padding:20px;border-radius:14px}
+.info .ico{background:var(--jaune);color:var(--noir);min-width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.info h5{color:var(--jaune);font-size:1rem}
+.info p{color:var(--gris);font-size:.92rem}
+form{background:var(--noir-3);padding:34px;border-radius:var(--rayon);display:flex;flex-direction:column;gap:16px}
+form h3{font-family:'Playfair Display',serif;font-size:1.6rem}
+input,select,textarea{width:100%;padding:14px 18px;border-radius:12px;border:2px solid #333;background:var(--noir);color:var(--blanc);font-family:inherit;font-size:.95rem;transition:.3s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--jaune)}
+textarea{resize:vertical;min-height:100px}
+.merci{display:none;color:var(--jaune);font-weight:600;text-align:center}
+
+/* FOOTER */
+footer{background:#000;padding:40px 0 20px;text-align:center;border-top:3px solid var(--jaune)}
+footer .logo{margin-bottom:10px;display:inline-block}
+footer p{color:var(--gris);font-size:.85rem}
+.haut{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;background:var(--jaune);color:var(--noir);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.3rem;opacity:0;pointer-events:none;transition:.3s;z-index:90}
+.haut.visible{opacity:1;pointer-events:auto}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(40px);transition:1s}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-grid,.apropos-grid,.contact-grid{grid-template-columns:1fr}
+  .chef-cadre{max-width:340px;margin-top:30px}
+  .apropos-img::after{position:static;display:block;margin-top:16px;max-width:none}
+  .burger{display:block;z-index:120}
+  .menu-nav{position:fixed;top:0;right:-100%;width:70%;height:100vh;background:var(--noir);flex-direction:column;justify-content:center;align-items:center;gap:34px;transition:.4s;box-shadow:-10px 0 30px rgba(0,0,0,.6)}
+  .menu-nav.ouvert{right:0}
+  .hero-stats{gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header id="header">
+  <div class="container nav">
+    <a href="#accueil" class="logo">Chef <span>TATY</span></a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="menu-nav" id="menuNav">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#apropos">Le Chef</a></li>
+      <li><a href="#menu">Notre Menu</a></li>
+      <li><a href="#pourquoi">Nos atouts</a></li>
+      <li><a href="#avis">Avis</a></li>
+      <li><a href="#contact" class="btn btn-jaune" style="padding:8px 22px">Réserver</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div>
+      <span class="badge">Loango University Restaurant</span>
+      <h1>La cuisine est une passion,<em>le goût un art.</em></h1>
+      <p>Ingrédients frais, grande saveur, fait tous les jours. Découvrez la cuisine du chef <strong style="color:#fff">Jurland TATY</strong>, au cœur de l'université.</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn btn-jaune">Voir le menu</a>
+        <a href="#contact" class="btn btn-contour">Réserver une table</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>17</strong><small>Plats au menu</small></div>
+        <div><strong>100%</strong><small>Fait maison</small></div>
+        <div><strong>7j/7</strong><small>Frais chaque jour</small></div>
+      </div>
+    </div>
+    <div class="chef-cadre">
+      <!-- PHOTO DU CUISINIER (profil) : image1.jpeg dans le même dossier -->
+      <img src="image1.jpeg" alt="Chef Jurland TATY" onerror="this.src='https://placehold.co/600x750/161616/FFC81E?text=Chef+TATY'">
+      <div class="chef-etiquette">Chef Jurland TATY<small>Cuisinier du restaurant</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BANDEAU ============ -->
+<div class="bandeau">
+  <div class="defile">
+    <span>★ Ingrédients frais</span><span>★ Grande saveur</span><span>★ Fait tous les jours</span><span>★ Crêpes tourbillon</span><span>★ Bouillon moukalou</span><span>★ Poisson bar grillé</span>
+    <span>★ Ingrédients frais</span><span>★ Grande saveur</span><span>★ Fait tous les jours</span><span>★ Crêpes tourbillon</span><span>★ Bouillon moukalou</span><span>★ Poisson bar grillé</span>
+  </div>
+</div>
+
+<!-- ============ A PROPOS ============ -->
+<section class="apropos" id="apropos">
+  <div class="container apropos-grid">
+    <div class="apropos-img reveal">
+      <img src="image1.jpeg" alt="Chef Taty en cuisine" onerror="this.src='https://placehold.co/700x700/161616/FFC81E?text=Chef+TATY'">
+    </div>
+    <div class="reveal">
+      <div class="titre-section" style="text-align:left;margin-bottom:20px"><span>Le chef</span></div>
+      <h3>Rencontrez <em>Jurland TATY</em></h3>
+      <p>Passionné par la cuisine, le chef Jurland TATY prépare chaque jour des plats généreux avec des ingrédients frais : du riz au poulet au bouillon moukalou, en passant par le poisson bar grillé et les spaghettis bolognaise.</p>
+      <p>Sa devise : de la saveur, de la fraîcheur et du soin dans chaque assiette, pour que chaque étudiant et chaque visiteur passe un vrai moment de plaisir.</p>
+      <div class="points">
+        <div class="point"><b>✔</b> Produits frais</div>
+        <div class="point"><b>✔</b> Cuisine du jour</div>
+        <div class="point"><b>✔</b> Prix accessibles</div>
+        <div class="point"><b>✔</b> Service rapide</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section id="menu">
+  <div class="container">
+    <div class="titre-section reveal">
+      <span>Notre carte</span>
+      <h2>Notre <em>Menu</em></h2>
+      <div class="trait"></div>
+    </div>
+
+    <div class="filtres reveal">
+      <button class="filtre actif" data-cat="tous">Tous</button>
+      <button class="filtre" data-cat="patisserie">Pâtisserie &amp; Autre</button>
+      <button class="filtre" data-cat="omelette">Omelettes &amp; Salades</button>
+      <button class="filtre" data-cat="riz">Riz &amp; Bouillons</button>
+    </div>
+
+    <div class="grille-plats" id="grille">
+
+      <!-- ===== Pâtisserie - Salade - Bouillon & Autre ===== -->
+      <article class="plat reveal" data-cat="patisserie">
+        <div class="plat-img" data-emoji="🥞"><span class="prix">1 500 FCFA</span><img src="crepes-tourbillon.jpg" alt="Crêpes tourbillon"></div>
+        <div class="plat-info"><small>Pâtisserie</small><h4>Crêpes tourbillon</h4><p>Des crêpes moelleuses et gourmandes, préparées chaque jour.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="patisserie">
+        <div class="plat-img" data-emoji="🥖"><span class="prix">200 FCFA</span><img src="pain-saucisson.jpg" alt="Pain saucisson"></div>
+        <div class="plat-info"><small>Snack</small><h4>Pain-saucisson</h4><p>Le petit pain croustillant garni de saucisson, parfait pour une pause.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="patisserie">
+        <div class="plat-img" data-emoji="🍕"><span class="prix">1 000 FCFA</span><img src="mini-pizza.jpg" alt="Mini-pizza"></div>
+        <div class="plat-info"><small>Pizza</small><h4>Mini-pizza</h4><p>Une petite pizza dorée, fondante et pleine de goût.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="patisserie">
+        <div class="plat-img" data-emoji="🍕"><span class="prix">1 000 FCFA</span><img src="pizza-saucisson.jpg" alt="Pizza au saucisson"></div>
+        <div class="plat-info"><small>Pizza</small><h4>Pizza au saucisson</h4><p>Pizza garnie de saucisson, cuite à point et bien généreuse.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="patisserie">
+        <div class="plat-img" data-emoji="🥣"><span class="prix">500 FCFA</span><img src="quaker.jpg" alt="Quaker"></div>
+        <div class="plat-info"><small>Petit-déjeuner</small><h4>Quaker</h4><p>Un bol chaud et réconfortant pour bien démarrer la journée.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+
+      <!-- ===== Omelettes & Salades ===== -->
+      <article class="plat reveal" data-cat="omelette">
+        <div class="plat-img" data-emoji="🍳"><span class="prix">1 000 FCFA</span><img src="omelette-ganie.jpg" alt="Omelette ganie"></div>
+        <div class="plat-info"><small>Omelette</small><h4>Omelette ganie</h4><p>Une omelette garnie, moelleuse et savoureuse.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="omelette">
+        <div class="plat-img" data-emoji="🍄"><span class="prix">1 500 FCFA</span><img src="omelette-champignon.jpg" data-fallback="omelette-ganie.jpg" alt="Omelette aux champignons"></div>
+        <div class="plat-info"><small>Omelette</small><h4>Omelette aux champignons</h4><p>Œufs battus et champignons poêlés, un classique irrésistible.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="omelette">
+        <div class="plat-img" data-emoji="🍳"><span class="prix">500 FCFA</span><img src="omelette-saucisson.jpg" data-fallback="omelette-ganie.jpg" alt="Omelette au saucisson"></div>
+        <div class="plat-info"><small>Omelette</small><h4>Omelette au saucisson</h4><p>Simple, rapide et pleine de goût, au bon prix.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="omelette">
+        <div class="plat-img" data-emoji="🍝"><span class="prix">3 500 FCFA</span><img src="spaghetti-bolognaise.jpg" alt="Spaghetti bolognaise"></div>
+        <div class="plat-info"><small>Pâtes</small><h4>Spaghettis bolognaise</h4><p>Spaghettis généreux nappés d'une sauce bolognaise maison.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="omelette">
+        <div class="plat-img" data-emoji="🥑"><span class="prix">1 500 FCFA</span><img src="salade-cretoise.jpg" alt="Salade crétoise à l'avocat"></div>
+        <div class="plat-info"><small>Salade</small><h4>Salade crétoise à l'avocat</h4><p>Une salade fraîche et colorée, relevée à l'avocat.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+
+      <!-- ===== Riz & Bouillons ===== -->
+      <article class="plat reveal" data-cat="riz">
+        <div class="plat-img entiere" data-emoji="🍗"><span class="prix">1 000 FCFA</span><img src="riz-poulet.jpg" data-fallback="riz-viande.jpg" alt="Riz poulet"></div>
+        <div class="plat-info"><small>Riz</small><h4>Riz poulet</h4><p>Riz parfumé accompagné de poulet bien assaisonné.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="riz">
+        <div class="plat-img entiere" data-emoji="🍖"><span class="prix">1 500 FCFA</span><img src="riz-viande.jpg" alt="Riz viande"></div>
+        <div class="plat-info"><small>Riz</small><h4>Riz viande</h4><p>Riz copieux servi avec une viande tendre et savoureuse.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="riz">
+        <div class="plat-img entiere" data-emoji="🐟"><span class="prix">1 500 FCFA</span><img src="riz-poissons.jpg" data-fallback="riz-viande.jpg" alt="Riz poissons"></div>
+        <div class="plat-info"><small>Riz</small><h4>Riz poissons</h4><p>Riz accompagné de poisson frais, cuisiné avec soin.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="riz">
+        <div class="plat-img" data-emoji="🐠"><span class="prix">2 500 FCFA</span><img src="poisson-bar-grille.jpg" alt="Poisson bar grillé"></div>
+        <div class="plat-info"><small>Spécialité</small><h4>Poisson bar grillé</h4><p>Bar grillé à la perfection, parfumé et juteux.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="riz">
+        <div class="plat-img" data-emoji="🍲"><span class="prix">3 000 FCFA</span><img src="bouillon-moukalou.jpg" data-fallback="bouillon-sauvage.jpg" alt="Bouillon moukalou"></div>
+        <div class="plat-info"><small>Bouillon</small><h4>Bouillon moukalou</h4><p>Un bouillon riche et épicé, la grande spécialité de la maison.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+      <article class="plat reveal" data-cat="riz">
+        <div class="plat-img" data-emoji="🍲"><span class="prix">1 500 FCFA</span><img src="bouillon-sauvage.jpg" alt="Bouillon sauvage"></div>
+        <div class="plat-info"><small>Bouillon</small><h4>Bouillon sauvage</h4><p>Un bouillon authentique aux saveurs fortes et traditionnelles.</p><a class="commande" href="#contact">Commander →</a></div>
+      </article>
+    </div>
+
+    <div class="accomp reveal">
+      <h4>Accompagnement</h4>
+      <p>Manioc · Banane · Foufou</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POURQUOI ============ -->
+<section class="pourquoi" id="pourquoi">
+  <div class="container">
+    <div class="titre-section reveal">
+      <span>Nos atouts</span>
+      <h2>Pourquoi nous <em>choisir ?</em></h2>
+      <div class="trait"></div>
+    </div>
+    <div class="cartes">
+      <div class="carte reveal"><div class="ico">🥬</div><h4>Ingrédients frais</h4><p>Des produits sélectionnés chaque jour pour un goût authentique.</p></div>
+      <div class="carte reveal"><div class="ico">🔥</div><h4>Grande saveur</h4><p>Des recettes généreuses, bien épicées et maîtrisées par le chef.</p></div>
+      <div class="carte reveal"><div class="ico">👨‍🍳</div><h4>Fait tous les jours</h4><p>Tout est préparé sur place, jamais de plats réchauffés.</p></div>
+      <div class="carte reveal"><div class="ico">💰</div><h4>Petits prix</h4><p>Dès 200 FCFA, pour que tout le monde puisse se régaler.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVIS ============ -->
+<section id="avis">
+  <div class="container">
+    <div class="titre-section reveal">
+      <span>Témoignages</span>
+      <h2>Ils <em>adorent</em></h2>
+      <div class="trait"></div>
+    </div>
+    <div class="avis-grille">
+      <div class="avis reveal"><div class="etoiles">★★★★★</div><p>Le bouillon moukalou est incroyable, un vrai goût de chez nous !</p><strong>— Une étudiante</strong></div>
+      <div class="avis reveal"><div class="etoiles">★★★★★</div><p>Rapide, bon et pas cher. Le riz poulet est mon plat du midi préféré.</p><strong>— Un étudiant</strong></div>
+      <div class="avis reveal"><div class="etoiles">★★★★★</div><p>Le poisson bar grillé est parfait, et le chef est très accueillant.</p><strong>— Un client</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="titre-section reveal">
+      <span>Venez nous voir</span>
+      <h2>Contact &amp; <em>Réservation</em></h2>
+      <div class="trait"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="infos reveal">
+        <div class="info"><div class="ico">📍</div><div><h5>Adresse</h5><p>Loango University Restaurant<br>Au cœur de l'université, au bout de l'allée</p></div></div>
+        <div class="info"><div class="ico">🕐</div><div><h5>Ouverture</h5><p>Tous les jours : ingrédients frais, plats faits chaque jour</p></div></div>
+        <div class="info"><div class="ico">💬</div><div><h5>Contact</h5><p>Réservation et commande via le formulaire (WhatsApp)</p></div></div>
+      </div>
+
+      <form id="formulaire" class="reveal">
+        <h3>Commander / Réserver</h3>
+        <input type="text" id="nom" placeholder="Votre nom" required>
+        <select id="plat" required>
+          <option value="">Choisir un plat…</option>
+          <option>Crêpes tourbillon</option><option>Pain-saucisson</option><option>Mini-pizza</option><option>Pizza au saucisson</option><option>Quaker</option>
+          <option>Omelette ganie</option><option>Omelette aux champignons</option><option>Omelette au saucisson</option><option>Spaghettis bolognaise</option><option>Salade crétoise à l'avocat</option>
+          <option>Riz poulet</option><option>Riz viande</option><option>Riz poissons</option><option>Poisson bar grillé</option><option>Bouillon moukalou</option><option>Bouillon sauvage</option>
+        </select>
+        <textarea id="message" placeholder="Votre message (accompagnement : manioc, banane ou foufou ?)"></textarea>
+        <button type="submit" class="btn btn-jaune">Envoyer sur WhatsApp</button>
+        <p class="merci" id="merci">Merci ! Votre message est prêt à être envoyé 🎉</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <a href="#accueil" class="logo">Chef <span>TATY</span> Jurland</a>
+  <p>Loango University Restaurant · Ingrédients frais · Grande saveur · Fait tous les jours</p>
+  <p style="margin-top:8px">© <span id="annee"></span> Tous droits réservés</p>
+</footer>
+
+<a href="#accueil" class="haut" id="haut" aria-label="Haut de page">↑</a>
+
+<script>
+  // Année auto
+  document.getElementById('annee').textContent = new Date().getFullYear();
+
+  // Header au scroll + bouton haut
+  const header = document.getElementById('header');
+  const haut = document.getElementById('haut');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 50);
+    haut.classList.toggle('visible', window.scrollY > 500);
+  });
+
+  // Menu burger
+  const burger = document.getElementById('burger');
+  const menuNav = document.getElementById('menuNav');
+  burger.addEventListener('click', () => menuNav.classList.toggle('ouvert'));
+  menuNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menuNav.classList.remove('ouvert')));
+
+  // Filtres du menu
+  const filtres = document.querySelectorAll('.filtre');
+  const plats = document.querySelectorAll('.plat');
+  filtres.forEach(btn => btn.addEventListener('click', () => {
+    filtres.forEach(f => f.classList.remove('actif'));
+    btn.classList.add('actif');
+    const cat = btn.dataset.cat;
+    plats.forEach(p => p.classList.toggle('cache', cat !== 'tous' && p.dataset.cat !== cat));
+  }));
+
+  // Image absente -> image de secours, puis emoji en dernier recours
+  document.querySelectorAll('.plat-img img').forEach(img => {
+    const bloc = img.parentElement;
+    const echec = () => {
+      const fb = img.dataset.fallback;
+      if (fb && !img.dataset.essaye) { img.dataset.essaye = '1'; img.src = fb; return; }
+      img.style.display = 'none'; bloc.classList.add('noimg');
+    };
+    img.addEventListener('error', echec);
+    if (img.complete && img.naturalWidth === 0) echec();
+  });
+
+  // Apparition au scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Formulaire -> WhatsApp (remplace le numéro ci-dessous, format international sans + ni espaces)
+  const NUMERO_WHATSAPP = "242000000000";
+  document.getElementById('formulaire').addEventListener('submit', e => {
+    e.preventDefault();
+    const nom = document.getElementById('nom').value;
+    const plat = document.getElementById('plat').value;
+    const msg = document.getElementById('message').value;
+    const texte = `Bonjour, je suis ${nom}. Je souhaite commander : ${plat}. ${msg}`;
+    document.getElementById('merci').style.display = 'block';
+    window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(texte)}`, '_blank');
+  });
+</script>
+</body>
+</html>
